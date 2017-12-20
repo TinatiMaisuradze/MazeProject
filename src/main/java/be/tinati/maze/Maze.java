@@ -19,16 +19,6 @@ public class Maze {
 			}
 		}
 	}
-	
-	// works with class maze adding passage method
-	public void addEastPassage(int x, int y) {
-		// works with class room
-		room[x][y].addEastPassage();
-	}
-
-	public void addSouthPassage(int x, int y) {
-		room[x][y].addSouthPassage();
-	}
 
 	// printing maze
 	public void print() {
@@ -42,21 +32,12 @@ public class Maze {
 			System.out.print("|");
 			for (int i = 0; i < length; i++) {
 				System.out.print("   " + room[i][j].getEastWall().getHorizontalVisualisation());
-//				if (room[i][j].getHasEastPassage()) {
-//					System.out.print("    ");
-//				} else {
-//					System.out.print("   |");
-//				}
 			}
 			System.out.println();
 
 			System.out.print("+");
 			for (int i = 0; i < length; i++) {
-				if (room[i][j].getHasSouthPassage()) {
-					System.out.print("    ");
-				} else {
-					System.out.print("---+");
-				}
+                System.out.print(room[i][j].getSouthWall().getVerticalVisualisation() + "+");
 			}
 			System.out.println();
 		}

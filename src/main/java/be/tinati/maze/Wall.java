@@ -1,8 +1,8 @@
 package be.tinati.maze;
 
 public enum Wall {
-	NORMAL("|","---"),
-	OPEN(" ","   "),
+	WALL("|","---"),
+	NO(" ","   "),
 	DOOR("D","-D-"),
 	BREAKABLE("B","-B-"),
 	FAKE_WALL("F","-F-");

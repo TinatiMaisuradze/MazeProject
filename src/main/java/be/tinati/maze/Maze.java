@@ -1,45 +1,61 @@
 package be.tinati.maze;
 
 public class Maze {
-	private Room[][] room;
-	private int length;
-	private int height;
-	
-	// constructor method
-	public Maze(int length, int height) {
-		this.length = length;
-		this.height = height;
+    private Room[][] room;
+    private int length;
+    private int height;
 
-		// initialize grid of rooms
-		room = new Room[length][height];
-		// initializing every room, store them under grid
-		for (int i = 0; i < length; i++) {
-			for (int j = 0; j < height; j++) {
-				room[i][j] = new Room(j, j, Wall.NORMAL, Wall.NORMAL, Wall.NORMAL, Wall.NORMAL, null);
-			}
-		}
-	}
+    // constructor method
+    public Maze(int length, int height) {
+        this.length = length;
+        this.height = height;
 
-	// printing maze
-	public void print() {
-		System.out.print("+");
-		for (int i = 0; i < length; i++) {
-			System.out.print("---+");
-		}
-		System.out.println();
+        // initialize grid of rooms
+        room = new Room[length][height];
+        // initializing every room, store them under grid
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < height; j++) {
+                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, null);
+            }
+        }
+    }
 
-		for (int j = 0; j < height; j++) {
-			System.out.print("|");
-			for (int i = 0; i < length; i++) {
-				System.out.print("   " + room[i][j].getEastWall().getHorizontalVisualisation());
-			}
-			System.out.println();
+    public void setRoomSouthWall(int i, int j, Wall type) {
+        room[i][j].setSouthWall(type);
+    }
 
-			System.out.print("+");
-			for (int i = 0; i < length; i++) {
+    public void setRoomNorthWall(int i, int j, Wall type) {
+        room[i][j].setNorthWall(type);
+    }
+
+    public void setRoomEastWall(int i, int j, Wall type) {
+        room[i][j].setEastWall(type);
+    }
+
+    public void setRoomWestWall(int i, int j, Wall type) {
+        room[i][j].setWestWall(type);
+    }
+
+    // printing maze
+    public void print() {
+        System.out.print("+");
+        for (int i = 0; i < length; i++) {
+            System.out.print("---+");
+        }
+        System.out.println();
+
+        for (int j = 0; j < height; j++) {
+            System.out.print("|");
+            for (int i = 0; i < length; i++) {
+                System.out.print("   " + room[i][j].getEastWall().getHorizontalVisualisation());
+            }
+            System.out.println();
+
+            System.out.print("+");
+            for (int i = 0; i < length; i++) {
                 System.out.print(room[i][j].getSouthWall().getVerticalVisualisation() + "+");
-			}
-			System.out.println();
-		}
-	}
+            }
+            System.out.println();
+        }
+    }
 }

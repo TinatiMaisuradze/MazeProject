@@ -1,18 +1,14 @@
 package be.tinati.maze;
 
 public class Room {
-	private int xCoordinate;
-	private int yCoordinate;
 	private Wall northWall;
 	private Wall southWall;
 	private Wall eastWall;
 	private Wall westWall;
 	private String object;
 
-	public Room(int xCoordinate, int yCoordinate, Wall northWall, Wall southWall, Wall eastWall, Wall westWall,
-			String object) {
-		this.xCoordinate = xCoordinate;
-		this.yCoordinate = yCoordinate;
+	public Room(Wall northWall, Wall southWall, Wall eastWall, Wall westWall,
+                String object) {
 		this.northWall = northWall;
 		this.southWall = southWall;
 		this.eastWall = eastWall;
@@ -20,11 +16,44 @@ public class Room {
 		this.object = object;
 	}
 
-    public Wall getEastWall() {
-        return eastWall;
+    public void setSouthWall(Wall southWall) {
+        this.southWall = southWall;
     }
 
     public Wall getSouthWall() {
         return southWall;
     }
+
+
+
+
+
+    public void setEastWall(Wall eastWall) {
+        this.eastWall = eastWall;
+    }
+
+    public Wall getEastWall() {
+        return eastWall;
+    }
+
+
+
+
+    public void setNorthWall(Wall northWall) {
+        this.northWall = northWall;
+    }
+    public Wall getNorthWall() {
+        return northWall;
+    }
+
+
+
+    public void setWestWall(Wall westWall) {
+        this.westWall = westWall;
+    }
+    public Wall getWestWall() {
+        return westWall;
+    }
+
+
 }

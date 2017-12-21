@@ -5,8 +5,7 @@ public enum Wall {
 	NO(" ","   "),
 	DOOR("D","-D-"),
 	BREAKABLE("B","-B-"),
-	FAKE_WALL("F","-F-");
-	
+	FAKE ("F","-F-");
 	private String horizontalVisualisation;
 	private String verticalVisualisation;
 	

@@ -15,10 +15,12 @@ public class Maze {
         // initializing every room, store them under grid
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
-                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, null);
+                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, Object.NO);
             }
         }
     }
+
+    //set methods
 
     public void setRoomSouthWall(int i, int j, Wall type) {
         room[i][j].setSouthWall(type);
@@ -36,18 +38,22 @@ public class Maze {
         room[i][j].setWestWall(type);
     }
 
+     public void setObject(int i, int j, Object type) {
+       room[i][j].setObject(type);
+    }
+
     // printing maze
     public void print() {
         System.out.print("+");
         for (int i = 0; i < length; i++) {
             System.out.print("---+");
         }
-        System.out.println();
+        System.out.println ();
 
         for (int j = 0; j < height; j++) {
             System.out.print("|");
             for (int i = 0; i < length; i++) {
-                System.out.print("   " + room[i][j].getEastWall().getHorizontalVisualisation());
+                System.out.print((room[i][j].getObject().getVisualisation()) + room[i][j].getEastWall().getHorizontalVisualisation());
             }
             System.out.println();
 

@@ -2,10 +2,11 @@ package be.tinati.maze;
 
 public enum Object {
     START(" S "),
-    FINISH(" E )"),
+    END (" E "),
     NO("   "),
     KEY(" K "),
-    HAMMER(" H ");
+    HAMMER(" H "),
+    TROPHY (" T ");
 
     private String Visualisation;
 

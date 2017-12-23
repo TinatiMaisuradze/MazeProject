@@ -16,9 +16,8 @@ public class Game {
 
         Maze mymaze = new Maze(5, 5);
 
-        for (int i = 0; i < 24; i++) {
-            String inputLine = reader.readLine();
-            //System.out.println(inputLine);
+        String inputLine = reader.readLine();
+        while (inputLine != null) {
             String[] roomDetails = inputLine.split(",");
 
             int xCoordinate = Integer.parseInt(roomDetails[0]);
@@ -35,6 +34,7 @@ public class Game {
             mymaze.setRoomNorthWall(xCoordinate, yCoordinate, northWall);
             mymaze.setRoomWestWall(xCoordinate, yCoordinate, westWall);
             mymaze.setObject(xCoordinate, yCoordinate, object);
+            inputLine = reader.readLine();
         }
 
         mymaze.print();

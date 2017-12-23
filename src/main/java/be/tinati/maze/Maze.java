@@ -22,46 +22,67 @@ public class Maze {
 
     //set methods
 
-    public void setRoomSouthWall(int i, int j, Wall type) {
-        room[i][j].setSouthWall(type);
+    public void setRoomSouthWall(int xCoordinate, int yCoordinate, Wall type) {
+        room[xCoordinate][yCoordinate].setSouthWall(type);
     }
 
-    public void setRoomNorthWall(int i, int j, Wall type) {
-        room[i][j].setNorthWall(type);
+    public void setRoomNorthWall(int xCoordinate, int yCoordinate, Wall type) {
+        room[xCoordinate][yCoordinate].setNorthWall(type);
     }
 
-    public void setRoomEastWall(int i, int j, Wall type) {
-        room[i][j].setEastWall(type);
+    public void setRoomEastWall(int xCoordinate, int yCoordinate, Wall type) {
+        room[xCoordinate][yCoordinate].setEastWall(type);
     }
 
-    public void setRoomWestWall(int i, int j, Wall type) {
-        room[i][j].setWestWall(type);
+    public void setRoomWestWall(int xCoordinate, int yCoordinate, Wall type) {
+        room[xCoordinate][yCoordinate].setWestWall(type);
     }
 
-     public void setObject(int i, int j, Object type) {
-       room[i][j].setObject(type);
+     public void setObject(int xCoordinate, int yCoordinate, Object type) {
+       room[xCoordinate][yCoordinate].setObject(type);
     }
 
+    /*// printing maze
+    public void printMazeDoubleWalls() {
+
+        for (int yCoordinate = 0; yCoordinate < height; yCoordinate++) {
+            for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+                System.out.print("+" + room[xCoordinate][yCoordinate].getNorthWall().getVerticalVisualisation() + "+");
+            }
+            System.out.println ();
+
+            for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+                System.out.print(room[xCoordinate][yCoordinate].getWestWall().getHorizontalVisualisation());
+                System.out.print((room[xCoordinate][yCoordinate].getObject().getVisualisation()));
+                System.out.print(room[xCoordinate][yCoordinate].getEastWall().getHorizontalVisualisation());
+            }
+            System.out.println();
+
+            for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+                System.out.print("+" + room[xCoordinate][yCoordinate].getSouthWall().getVerticalVisualisation() + "+");
+            }
+            System.out.println();
+        }
+
+    }*/
     // printing maze
     public void print() {
-        System.out.print("+");
-        for (int i = 0; i < length; i++) {
-            System.out.print("---+");
-        }
-        System.out.println ();
 
-        for (int j = 0; j < height; j++) {
-            System.out.print("|");
-            for (int i = 0; i < length; i++) {
-                System.out.print((room[i][j].getObject().getVisualisation()) + room[i][j].getEastWall().getHorizontalVisualisation());
+        for (int yCoordinate = 0; yCoordinate < height; yCoordinate++) {
+            for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+                System.out.print("+" + room[xCoordinate][yCoordinate].getNorthWall().getVerticalVisualisation());
             }
-            System.out.println();
+            System.out.println ();
 
-            System.out.print("+");
-            for (int i = 0; i < length; i++) {
-                System.out.print(room[i][j].getSouthWall().getVerticalVisualisation() + "+");
+            for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+                System.out.print(room[xCoordinate][yCoordinate].getWestWall().getHorizontalVisualisation());
+                System.out.print((room[xCoordinate][yCoordinate].getObject().getVisualisation()));
             }
             System.out.println();
         }
-    }
-}
+
+            }
+
+        }
+
+

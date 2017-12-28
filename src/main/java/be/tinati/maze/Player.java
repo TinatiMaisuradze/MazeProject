@@ -21,22 +21,27 @@ public class Player {
         return positionX == xCoordinate && positionY == yCoordinate;
     }
 
-    public void changePosition() {
+    private void moveThroughPassage(Passage wall) {
+        if (wall != Passage.WALL)
+            positionY -= 1;
+    }
+
+    public void changePosition(Room room1) {
         System.out.println("hi now you can move! with u - up, d - down, r - right, l - left ");
         Scanner scanner = new Scanner(System.in);
 
         switch (scanner.next()) {
             case "u":
-                positionY -= 1;
+                moveThroughPassage(room1.getNorthWall());
                 break;
             case "d":
-                positionY += 1;
+                moveThroughPassage(room1.getSouthWall());
                 break;
             case "r":
-                positionX += 1;
+                moveThroughPassage(room1.getEastWall());
                 break;
             case "l":
-                positionX -= 1;
+                moveThroughPassage(room1.getWestWall());
                 break;
             default:
                 System.out.println("Please only use, U, D, R, L ");

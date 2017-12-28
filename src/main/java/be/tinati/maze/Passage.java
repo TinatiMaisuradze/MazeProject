@@ -1,15 +1,15 @@
 package be.tinati.maze;
 
-public enum Wall {
+public enum Passage {
 	WALL("#","###"),
 	NO(" ","   "),
 	DOOR("/","///"),
 	BREAKABLE("B","-B-"),
-	FAKE ("F","-F-");
+	FAKE ("#","###");
 	private String horizontalVisualisation;
 	private String verticalVisualisation;
 	
-	Wall(String horizontalVisualisation, String verticalVisualisation) {
+	Passage(String horizontalVisualisation, String verticalVisualisation) {
 		this.horizontalVisualisation = horizontalVisualisation;
 		this.verticalVisualisation = verticalVisualisation;
 	}

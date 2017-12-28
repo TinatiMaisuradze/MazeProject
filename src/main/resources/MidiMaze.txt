@@ -11,8 +11,8 @@ Xcoordinate,Ycoordinate,northWall,southWall,eastWall,westWall,Object
 1,4,breakable,wall,no,door,no
 2,0,wall,breakable,door,wall,no
 2,1,breakable,no,fake,wall,key
-2,2,no,wall,wall,wall,no
-2,3,wall,wall,door,wall,no
+2,2,no,fake,wall,wall,no
+2,3,fake,wall,door,wall,no
 2,4,wall,wall,door,breakable,trophy
 3,0,wall,wall,wall,door,no
 3,1,wall,wall,wall,wall,no

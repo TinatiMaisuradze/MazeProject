@@ -19,28 +19,29 @@ public class Maze {
         // initializing every room, store them under grid
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
-                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, RoomContent.NO);
+                room[i][j] = new Room();
             }
         }
     }
+
     //set methods
     public String getName() {
         return name;
     }
 
-    public void setRoomSouthWall(int xCoordinate, int yCoordinate, Wall type) {
+    public void setRoomSouthWall(int xCoordinate, int yCoordinate, Passage type) {
         room[xCoordinate][yCoordinate].setSouthWall(type);
     }
 
-    public void setRoomNorthWall(int xCoordinate, int yCoordinate, Wall type) {
+    public void setRoomNorthWall(int xCoordinate, int yCoordinate, Passage type) {
         room[xCoordinate][yCoordinate].setNorthWall(type);
     }
 
-    public void setRoomEastWall(int xCoordinate, int yCoordinate, Wall type) {
+    public void setRoomEastWall(int xCoordinate, int yCoordinate, Passage type) {
         room[xCoordinate][yCoordinate].setEastWall(type);
     }
 
-    public void setRoomWestWall(int xCoordinate, int yCoordinate, Wall type) {
+    public void setRoomWestWall(int xCoordinate, int yCoordinate, Passage type) {
         room[xCoordinate][yCoordinate].setWestWall(type);
     }
 
@@ -107,10 +108,18 @@ public class Maze {
         System.out.println();
         System.out.println();
     }
-    public boolean checkForEnd(Player player){
+
+    public boolean checkForEnd(Player player) {
         Room room = this.room[player.getPositionX()][player.getPositionY()];
-        return room.getRoomContent()== RoomContent.END;
+        return room.getRoomContent() == RoomContent.END;
     }
+
+    public void accessChangePosition(Player player) {
+
+        Room room1 = this.room[player.getPositionX()][player.getPositionY()];
+        player.changePosition(room1);
+    }
+
 
 
 }

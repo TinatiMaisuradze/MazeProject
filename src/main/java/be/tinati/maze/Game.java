@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static sun.audio.AudioPlayer.player;
-
 public class Game {
 
     // main method, connects to input with bufferedreader, specifies maze dimensions, specifies
@@ -16,7 +14,7 @@ public class Game {
         BufferedReader reader = new BufferedReader(fileReader);
         System.out.println(reader.readLine());
 
-        Maze mymaze = new Maze( "Maze1", 5, 5);
+        Maze mymaze = new Maze("Maze1", 5, 5);
 
         Player player = new Player("Tinati", 0, 0);
 
@@ -26,10 +24,10 @@ public class Game {
 
             int xCoordinate = Integer.parseInt(roomDetails[0]);
             int yCoordinate = Integer.parseInt(roomDetails[1]);
-            Wall northWall = Wall.valueOf(roomDetails[2].toUpperCase());
-            Wall southWall = Wall.valueOf(roomDetails[3].toUpperCase());
-            Wall westWall = Wall.valueOf(roomDetails[4].toUpperCase());
-            Wall eastWall = Wall.valueOf(roomDetails[5].toUpperCase());
+            Passage northWall = Passage.valueOf(roomDetails[2].toUpperCase());
+            Passage southWall = Passage.valueOf(roomDetails[3].toUpperCase());
+            Passage westWall = Passage.valueOf(roomDetails[4].toUpperCase());
+            Passage eastWall = Passage.valueOf(roomDetails[5].toUpperCase());
             RoomContent roomContent = RoomContent.valueOf(roomDetails[6].toUpperCase());
 
 
@@ -45,10 +43,10 @@ public class Game {
         mymaze.print(player);
 
         while (!mymaze.checkForEnd(player)) {
-          player.changePosition();
+            mymaze.accessChangePosition(player);
             mymaze.print(player);
         }
-        System.out.println("PlayerName - " +player.getName() +" | " + "MazeName - " + mymaze.getName()
-                +  " | " +"NrOfSteps  - "+ player.getStepCounter() );
+        System.out.println("PlayerName - " + player.getName() + " | " + "MazeName - " + mymaze.getName()
+                + " | " + "NrOfSteps  - " + player.getStepCounter());
     }
 }

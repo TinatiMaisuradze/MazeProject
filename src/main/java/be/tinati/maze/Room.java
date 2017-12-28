@@ -1,49 +1,40 @@
 package be.tinati.maze;
 
 public class Room {
-	private Wall northWall;
-	private Wall southWall;
-	private Wall eastWall;
-	private Wall westWall;
+	private Passage northWall;
+	private Passage southWall;
+	private Passage eastWall;
+	private Passage westWall;
 	private RoomContent roomContent;
 
 
-	public Room(Wall northWall, Wall southWall, Wall eastWall, Wall westWall, RoomContent roomContent) {
-		this.northWall = northWall;
-		this.southWall = southWall;
-		this.eastWall = eastWall;
-		this.westWall = westWall;
-		this.roomContent = roomContent;
-
-	}
-
-    public void setSouthWall(Wall southWall) {
+    public void setSouthWall(Passage southWall) {
         this.southWall = southWall;
     }
 
-    public Wall getSouthWall() {
+    public Passage getSouthWall() {
         return southWall;
     }
 
-    public void setEastWall(Wall eastWall) {
+    public void setEastWall(Passage eastWall) {
         this.eastWall = eastWall;
     }
 
-    public Wall getEastWall() {
+    public Passage getEastWall() {
         return eastWall;
     }
 
-    public void setNorthWall(Wall northWall) {
+    public void setNorthWall(Passage northWall) {
         this.northWall = northWall;
     }
-    public Wall getNorthWall() {
+    public Passage getNorthWall() {
         return northWall;
     }
 
-    public void setWestWall(Wall westWall) {
+    public void setWestWall(Passage westWall) {
         this.westWall = westWall;
     }
-    public Wall getWestWall() {
+    public Passage getWestWall() {
         return westWall;
     }
 

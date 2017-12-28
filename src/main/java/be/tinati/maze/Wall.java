@@ -1,9 +1,9 @@
 package be.tinati.maze;
 
 public enum Wall {
-	WALL("|","---"),
+	WALL("#","###"),
 	NO(" ","   "),
-	DOOR("D","-D-"),
+	DOOR("/","///"),
 	BREAKABLE("B","-B-"),
 	FAKE ("F","-F-");
 	private String horizontalVisualisation;

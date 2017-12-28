@@ -5,16 +5,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static sun.audio.AudioPlayer.player;
+
 public class Game {
 
-// main method, connects to input with bufferedreader, specifies maze dimensions, specifies
+    // main method, connects to input with bufferedreader, specifies maze dimensions, specifies
 // how to read input (separate by comma) and which value is defined why which path of input
     public static void main(String[] args) throws IOException {
         FileReader fileReader = new FileReader(new File("out/production/resources/MidiMaze.txt"));
         BufferedReader reader = new BufferedReader(fileReader);
         System.out.println(reader.readLine());
 
-        Maze mymaze = new Maze(5, 5);
+        Maze mymaze = new Maze( "Maze1", 5, 5);
+
+        Player player = new Player("Tinati", 0, 0);
 
         String inputLine = reader.readLine();
         while (inputLine != null) {
@@ -26,17 +30,25 @@ public class Game {
             Wall southWall = Wall.valueOf(roomDetails[3].toUpperCase());
             Wall westWall = Wall.valueOf(roomDetails[4].toUpperCase());
             Wall eastWall = Wall.valueOf(roomDetails[5].toUpperCase());
-            Object object = Object.valueOf(roomDetails[6].toUpperCase());
+            RoomContent roomContent = RoomContent.valueOf(roomDetails[6].toUpperCase());
 
 
             mymaze.setRoomSouthWall(xCoordinate, yCoordinate, southWall);
             mymaze.setRoomEastWall(xCoordinate, yCoordinate, eastWall);
             mymaze.setRoomNorthWall(xCoordinate, yCoordinate, northWall);
             mymaze.setRoomWestWall(xCoordinate, yCoordinate, westWall);
-            mymaze.setObject(xCoordinate, yCoordinate, object);
+            mymaze.setObject(xCoordinate, yCoordinate, roomContent);
             inputLine = reader.readLine();
         }
 
-        mymaze.print();
+
+        mymaze.print(player);
+
+        while (!mymaze.checkForEnd(player)) {
+          player.changePosition();
+            mymaze.print(player);
+        }
+        System.out.println("PlayerName - " +player.getName() +" | " + "MazeName - " + mymaze.getName()
+                +  " | " +"NrOfSteps  - "+ player.getStepCounter() );
     }
 }

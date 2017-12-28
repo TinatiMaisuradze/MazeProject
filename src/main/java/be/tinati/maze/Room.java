@@ -1,21 +1,19 @@
 package be.tinati.maze;
 
-import java.util.PrimitiveIterator;
-
 public class Room {
 	private Wall northWall;
 	private Wall southWall;
 	private Wall eastWall;
 	private Wall westWall;
-	private Object object;
+	private RoomContent roomContent;
 
 
-	public Room(Wall northWall, Wall southWall, Wall eastWall, Wall westWall, Object object) {
+	public Room(Wall northWall, Wall southWall, Wall eastWall, Wall westWall, RoomContent roomContent) {
 		this.northWall = northWall;
 		this.southWall = southWall;
 		this.eastWall = eastWall;
 		this.westWall = westWall;
-		this.object = object;
+		this.roomContent = roomContent;
 
 	}
 
@@ -50,11 +48,11 @@ public class Room {
     }
 
 
-    public Object getObject() {
-        return object;
+    public RoomContent getRoomContent() {
+        return roomContent;
     }
 
-    public void setObject(Object object) {
-        this.object = object;
+    public void setRoomContent(RoomContent roomContent) {
+        this.roomContent = roomContent;
     }
 }

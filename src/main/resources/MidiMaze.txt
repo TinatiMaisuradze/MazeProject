@@ -2,7 +2,7 @@ Xcoordinate,Ycoordinate,northWall,southWall,eastWall,westWall,Object
 0,0,wall,no,wall,no,start
 0,1,no,wall,wall,door,no
 0,2,wall,no,wall,no,no
-0,3,no,wall,wall,fake,no
+0,3,no,door,wall,fake,no
 0,4,wall,wall,no,no,no
 1,0,wall,wall,no,door,no
 1,1,wall,wall,door,fake,no

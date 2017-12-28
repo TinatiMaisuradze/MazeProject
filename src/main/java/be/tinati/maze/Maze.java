@@ -1,26 +1,32 @@
 package be.tinati.maze;
 
 public class Maze {
+    private String name;
     private Room[][] room;
     private int length;
     private int height;
+    private int xCoordinate;
+    private int yCoordinate;
 
     // constructor method
-    public Maze(int length, int height) {
+    public Maze(String name, int length, int height) {
         this.length = length;
         this.height = height;
+        this.name = name;
 
         // initialize grid of rooms
         room = new Room[length][height];
         // initializing every room, store them under grid
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
-                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, Object.NO);
+                room[i][j] = new Room(Wall.WALL, Wall.WALL, Wall.WALL, Wall.WALL, RoomContent.NO);
             }
         }
     }
-
     //set methods
+    public String getName() {
+        return name;
+    }
 
     public void setRoomSouthWall(int xCoordinate, int yCoordinate, Wall type) {
         room[xCoordinate][yCoordinate].setSouthWall(type);
@@ -38,22 +44,22 @@ public class Maze {
         room[xCoordinate][yCoordinate].setWestWall(type);
     }
 
-     public void setObject(int xCoordinate, int yCoordinate, Object type) {
-       room[xCoordinate][yCoordinate].setObject(type);
+    public void setObject(int xCoordinate, int yCoordinate, RoomContent type) {
+        room[xCoordinate][yCoordinate].setRoomContent(type);
     }
 
-    /*// printing maze
+    // printing double maze for checking input
     public void printMazeDoubleWalls() {
 
         for (int yCoordinate = 0; yCoordinate < height; yCoordinate++) {
             for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
                 System.out.print("+" + room[xCoordinate][yCoordinate].getNorthWall().getVerticalVisualisation() + "+");
             }
-            System.out.println ();
+            System.out.println();
 
             for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
                 System.out.print(room[xCoordinate][yCoordinate].getWestWall().getHorizontalVisualisation());
-                System.out.print((room[xCoordinate][yCoordinate].getObject().getVisualisation()));
+                System.out.print((room[xCoordinate][yCoordinate].getRoomContent().getVisualisation()));
                 System.out.print(room[xCoordinate][yCoordinate].getEastWall().getHorizontalVisualisation());
             }
             System.out.println();
@@ -64,25 +70,49 @@ public class Maze {
             System.out.println();
         }
 
-    }*/
+    }
+
+
     // printing maze
-    public void print() {
+    public void print(Player player) {
+
 
         for (int yCoordinate = 0; yCoordinate < height; yCoordinate++) {
             for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
-                System.out.print("+" + room[xCoordinate][yCoordinate].getNorthWall().getVerticalVisualisation());
+                System.out.print("#" + room[xCoordinate][yCoordinate].getNorthWall().getVerticalVisualisation());
+
             }
-            System.out.println ();
+
+            System.out.println("#");
+
 
             for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
                 System.out.print(room[xCoordinate][yCoordinate].getWestWall().getHorizontalVisualisation());
-                System.out.print((room[xCoordinate][yCoordinate].getObject().getVisualisation()));
+                if (player.playerPosition(xCoordinate, yCoordinate)) {
+                    System.out.print(" X ");
+                } else {
+                    System.out.print((room[xCoordinate][yCoordinate].getRoomContent().getVisualisation()));
+                }
+
             }
+            System.out.print(room[height - 1][yCoordinate].getWestWall().getHorizontalVisualisation());
             System.out.println();
-        }
-
-            }
 
         }
+
+        for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
+            System.out.print("#" + room[xCoordinate][height - 1].getSouthWall().getVerticalVisualisation());
+        }
+        System.out.print("#");
+        System.out.println();
+        System.out.println();
+    }
+    public boolean checkForEnd(Player player){
+        Room room = this.room[player.getPositionX()][player.getPositionY()];
+        return room.getRoomContent()== RoomContent.END;
+    }
+
+
+}
 
 

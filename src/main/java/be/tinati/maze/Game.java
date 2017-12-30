@@ -28,14 +28,14 @@ public class Game {
             Passage southWall = Passage.valueOf(roomDetails[3].toUpperCase());
             Passage westWall = Passage.valueOf(roomDetails[4].toUpperCase());
             Passage eastWall = Passage.valueOf(roomDetails[5].toUpperCase());
-            RoomContent roomContent = RoomContent.valueOf(roomDetails[6].toUpperCase());
+            Item item = Item.valueOf(roomDetails[6].toUpperCase());
 
 
             mymaze.setRoomSouthWall(xCoordinate, yCoordinate, southWall);
             mymaze.setRoomEastWall(xCoordinate, yCoordinate, eastWall);
             mymaze.setRoomNorthWall(xCoordinate, yCoordinate, northWall);
             mymaze.setRoomWestWall(xCoordinate, yCoordinate, westWall);
-            mymaze.setObject(xCoordinate, yCoordinate, roomContent);
+            mymaze.setObject(xCoordinate, yCoordinate, item);
             inputLine = reader.readLine();
         }
 
@@ -43,10 +43,11 @@ public class Game {
         mymaze.print(player);
 
         while (!mymaze.checkForEnd(player)) {
-            mymaze.accessChangePosition(player);
+            mymaze.changePosition(player);
+            mymaze.pickUpObject(player);
             mymaze.print(player);
         }
         System.out.println("PlayerName - " + player.getName() + " | " + "MazeName - " + mymaze.getName()
-                + " | " + "NrOfSteps  - " + player.getStepCounter());
+                + " | " + "NrOfSteps  - " + mymaze.getStepCounter());
     }
 }

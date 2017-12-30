@@ -1,6 +1,6 @@
 package be.tinati.maze;
 
-public enum RoomContent {
+public enum Item {
     START(" S "),
     END(" E "),
     NO("   "),
@@ -11,7 +11,7 @@ public enum RoomContent {
     private String Visualisation;
 
 
-    RoomContent(String Visualisation) {
+    Item(String Visualisation) {
         this.Visualisation = Visualisation;
 
     }

@@ -1,11 +1,11 @@
 package be.tinati.maze;
 
 public class Room {
-	private Passage northWall;
-	private Passage southWall;
-	private Passage eastWall;
-	private Passage westWall;
-	private RoomContent roomContent;
+    private Passage northWall;
+    private Passage southWall;
+    private Passage eastWall;
+    private Passage westWall;
+    private Item item;
 
 
     public void setSouthWall(Passage southWall) {
@@ -27,6 +27,7 @@ public class Room {
     public void setNorthWall(Passage northWall) {
         this.northWall = northWall;
     }
+
     public Passage getNorthWall() {
         return northWall;
     }
@@ -34,16 +35,16 @@ public class Room {
     public void setWestWall(Passage westWall) {
         this.westWall = westWall;
     }
+
     public Passage getWestWall() {
         return westWall;
     }
 
-
-    public RoomContent getRoomContent() {
-        return roomContent;
+    public void setItem(Item item) {
+        this.item = item;
     }
 
-    public void setRoomContent(RoomContent roomContent) {
-        this.roomContent = roomContent;
+    public Item getItem() {
+        return item;
     }
 }

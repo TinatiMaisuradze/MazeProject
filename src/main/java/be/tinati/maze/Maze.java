@@ -123,103 +123,99 @@ public class Maze {
         System.out.println();
     }
 
+    public void changePassageNorthOf(int x, int y, Passage newPassage) {
+        room[x][y].setNorthWall(newPassage);
+        room[x][y - 1].setSouthWall(newPassage);
+    }
+
+    public void changePassageEastOf(int x, int y, Passage newPassage) {
+        room[x][y].setEastWall(newPassage);
+        room[x + 1][y].setWestWall(newPassage);
+    }
+
     // change position; for each wall, also same wall of the other room since they are doubled up
     public void changePosition(Player player) {
-        Room room = this.room[player.getPositionX()][player.getPositionY()];
+        Room room = this.room[player.getPX()][player.getPY()];
         System.out.println("hi now you can move! with u - up, d - down, r - right, l - left ");
         switch (scanner.next()) {
             case "u":
-                Room room1 = this.room[player.getPositionX()][player.getPositionY() - 1];
                 if (room.getNorthWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        room.setNorthWall(Passage.BROKENWALL);
-                        room1.setSouthWall(Passage.BROKENWALL);
+                        changePassageNorthOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
-
                     }
                 } else if (room.getNorthWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        room.setNorthWall(Passage.OPENDOOR);
-                        room1.setSouthWall(Passage.OPENDOOR);
+                        changePassageNorthOf(player.getPX(), player.getPY(), Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getNorthWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionY(player.getPositionY() - 1);
+                        player.setpY(player.getPY() - 1);
                     }
-                } else if (room.getNorthWall() != Passage.WALL) {
-                    player.setPositionY(player.getPositionY() - 1);
+                } else {
+                    player.setpY(player.getPY() - 1);
                 }
                 break;
             case "d":
-                Room room2 = this.room[player.getPositionX()][player.getPositionY() + 1];
                 if (room.getSouthWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        room.setSouthWall(Passage.BROKENWALL);
-                        room2.setNorthWall(Passage.BROKENWALL);
-
+                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getSouthWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        room.setSouthWall(Passage.OPENDOOR);
-                        room2.setNorthWall(Passage.OPENDOOR);
+                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getSouthWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionY(player.getPositionY() + 1);
+                        player.setpY(player.getPY() + 1);
                     }
-                } else if (room.getSouthWall() != Passage.WALL) {
-                    player.setPositionY(player.getPositionY() + 1);
+                } else {
+                    player.setpY(player.getPY() + 1);
                 }
                 break;
             case "r":
-                Room room3 = this.room[player.getPositionX() + 1][player.getPositionY()];
                 if (room.getEastWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        room.setEastWall(Passage.BROKENWALL);
-                        room3.setWestWall(Passage.BROKENWALL);
+                        changePassageEastOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getEastWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        room.setEastWall(Passage.OPENDOOR);
-                        room3.setWestWall(Passage.OPENDOOR);
+                        changePassageEastOf(player.getPX(), player.getPY(), Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getEastWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionX(player.getPositionX() + 1);
+                        player.setPositionX(player.getPX() + 1);
                     }
-                } else if (room.getEastWall() != Passage.WALL) {
-                    player.setPositionX(player.getPositionX() + 1);
+                } else {
+                    player.setPositionX(player.getPX() + 1);
                 }
                 break;
             case "l":
-                Room room4 = this.room[player.getPositionX() - 1][player.getPositionY()];
                 if (room.getWestWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        room.setWestWall(Passage.BROKENWALL);
-                        room4.setEastWall(Passage.BROKENWALL);
+                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getWestWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        room.setWestWall(Passage.OPENDOOR);
-                        room4.setEastWall(Passage.OPENDOOR);
+                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getWestWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionX(player.getPositionX() - 1);
+                        player.setPositionX(player.getPX() - 1);
                     }
-                } else if (room.getWestWall() != Passage.WALL) {
-                    player.setPositionX(player.getPositionX() - 1);
+                } else {
+                    player.setPositionX(player.getPX() - 1);
                 }
                 break;
             default:
@@ -229,7 +225,7 @@ public class Maze {
     }
 
     public void pickUpObject(Player player) {
-        Room room = this.room[player.getPositionX()][player.getPositionY()];
+        Room room = this.room[player.getPX()][player.getPY()];
         if (room.getItem() == Item.KEY) {
             player.incNrOfKeys();
             room.setItem(Item.NO);
@@ -244,7 +240,7 @@ public class Maze {
     }
 
     public boolean checkForEnd(Player player) {
-        Room room = this.room[player.getPositionX()][player.getPositionY()];
+        Room room = this.room[player.getPX()][player.getPY()];
         return room.getItem() == Item.END;
     }
 

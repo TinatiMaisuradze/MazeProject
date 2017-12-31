@@ -1,21 +1,19 @@
 package be.tinati.maze;
 
-import java.util.Scanner;
-
 public class Player {
     private String name;
-    private int positionX;
-    private int positionY;
+    private int pX; //position X of player on the grid
+    private int pY;//position Y of player on the grid
     private int nrOfKeys = 0;
     private int nrOfHammers = 0;
     private int nrOfTrophys = 0;
 
 
     // Initial position is the entry point(S) of the maze
-    public Player(String name, int positionX, int positionY) {
+    public Player(String name, int pX, int pY) {
         this.name = name;
-        this.positionX = positionX;
-        this.positionY = positionY;
+        this.pX = pX;
+        this.pY = pY;
     }
 
     public void incNrOfKeys() {
@@ -43,15 +41,15 @@ public class Player {
 
     public boolean playerPosition(int xCoordinate, int yCoordinate) {
 
-        return positionX == xCoordinate && positionY == yCoordinate;
+        return pX == xCoordinate && pY == yCoordinate;
     }
 
-    public int getPositionX() {
-        return positionX;
+    public int getPX() {
+        return pX;
     }
 
-    public int getPositionY() {
-        return positionY;
+    public int getPY() {
+        return pY;
     }
 
     public String getName() {
@@ -71,11 +69,11 @@ public class Player {
     }
 
     public void setPositionX(int positionX) {
-        this.positionX = positionX;
+        this.pX = positionX;
     }
 
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setpY(int pY) {
+        this.pY = pY;
     }
 
 

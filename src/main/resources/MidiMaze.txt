@@ -1,5 +1,5 @@
 Xcoordinate,Ycoordinate,northWall,southWall,eastWall,westWall,Object
-0,0,wall,no,wall,no,start
+0,0,no,no,wall,no,start
 0,1,no,wall,wall,door,hammer
 0,2,wall,no,wall,no,hammer
 0,3,no,door,wall,fake,no

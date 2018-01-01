@@ -68,7 +68,7 @@ public class Player {
         return nrOfTrophys;
     }
 
-    public void setPositionX(int positionX) {
+    public void setPX(int positionX) {
         this.pX = positionX;
     }
 

@@ -125,12 +125,12 @@ public class Maze {
 
     public void changePassageNorthOf(int x, int y, Passage newPassage) {
         room[x][y].setNorthWall(newPassage);
-        room[x][y - 1].setSouthWall(newPassage);
+        room[x][y-1].setSouthWall(newPassage);
     }
 
     public void changePassageEastOf(int x, int y, Passage newPassage) {
         room[x][y].setEastWall(newPassage);
-        room[x + 1][y].setWestWall(newPassage);
+        room[x+1][y].setWestWall(newPassage);
     }
 
     // change position; for each wall, also same wall of the other room since they are doubled up
@@ -143,6 +143,7 @@ public class Maze {
                     if (player.getNrOfHammers() > 0) {
                         changePassageNorthOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
+
                     }
                 } else if (room.getNorthWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
@@ -161,12 +162,12 @@ public class Maze {
             case "d":
                 if (room.getSouthWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.BROKENWALL);
+                        changePassageNorthOf(player.getPX(), player.getPY()+1, Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getSouthWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.OPENDOOR);
+                        changePassageNorthOf(player.getPX(), player.getPY()+1, Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getSouthWall() == Passage.WALL) {
@@ -181,7 +182,7 @@ public class Maze {
             case "r":
                 if (room.getEastWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        changePassageEastOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
+                       changePassageEastOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getEastWall() == Passage.DOOR) {
@@ -192,30 +193,30 @@ public class Maze {
                 } else if (room.getEastWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionX(player.getPX() + 1);
+                        player.setPX(player.getPX() + 1);
                     }
                 } else {
-                    player.setPositionX(player.getPX() + 1);
+                    player.setPX(player.getPX() + 1);
                 }
                 break;
             case "l":
                 if (room.getWestWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.BROKENWALL);
+                        changePassageEastOf(player.getPX()-1, player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getWestWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.OPENDOOR);
+                        changePassageEastOf(player.getPX()-1, player.getPY(), Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getWestWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
                         player.decNrOfTrhophys();
-                        player.setPositionX(player.getPX() - 1);
+                        player.setPX(player.getPX() - 1);
                     }
                 } else {
-                    player.setPositionX(player.getPX() - 1);
+                    player.setPX(player.getPX() - 1);
                 }
                 break;
             default:
@@ -226,22 +227,22 @@ public class Maze {
 
     public void pickUpObject(Player player) {
         Room room = this.room[player.getPX()][player.getPY()];
-        if (room.getItem() == Item.KEY) {
+        if (room.getItem() instanceof Key) {
             player.incNrOfKeys();
-            room.setItem(Item.NO);
-        } else if (room.getItem() == Item.HAMMER) {
+            room.setItem(new NoItem());
+        } else if (room.getItem() instanceof Hammer) {
             player.incNrOfHammers();
-            room.setItem(Item.NO);
-        } else if (room.getItem() == Item.TROPHY) {
+            room.setItem(new NoItem());
+        } else if (room.getItem() instanceof Trophy) {
             player.incNrOfTrophys();
-            room.setItem(Item.NO);
+            room.setItem(new NoItem());
         }
 
     }
 
     public boolean checkForEnd(Player player) {
         Room room = this.room[player.getPX()][player.getPY()];
-        return room.getItem() == Item.END;
+        return room.getItem() instanceof  NoItem;
     }
 
 

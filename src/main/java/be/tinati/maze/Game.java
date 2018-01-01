@@ -39,15 +39,18 @@ public class Game {
             inputLine = reader.readLine();
         }
 
+         try {
+             mymaze.print(player);
 
-        mymaze.print(player);
-
-        while (!mymaze.checkForEnd(player)) {
-            mymaze.changePosition(player);
-            mymaze.pickUpObject(player);
-            mymaze.print(player);
-        }
-        System.out.println("PlayerName - " + player.getName() + " | " + "MazeName - " + mymaze.getName()
-                + " | " + "NrOfSteps  - " + mymaze.getStepCounter());
+             while (!mymaze.checkForEnd(player)) {
+                 mymaze.changePosition(player);
+                 mymaze.pickUpObject(player);
+                 mymaze.print(player);
+             }
+             System.out.println("PlayerName - " + player.getName() + " | " + "MazeName - " + mymaze.getName()
+                     + " | " + "NrOfSteps  - " + mymaze.getStepCounter());
+         }
+         catch (ArrayIndexOutOfBoundsException FALL) {
+        System.out.println("You fell off the world, try to stay within the maze next time :)");}
     }
 }

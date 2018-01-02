@@ -53,7 +53,7 @@ public class Maze {
         room[xCoordinate][yCoordinate].setWestWall(type);
     }
 
-    public void setObject(int xCoordinate, int yCoordinate, Item type) {
+    public void setItem(int xCoordinate, int yCoordinate, Item type) {
         room[xCoordinate][yCoordinate].setItem(type);
     }
 

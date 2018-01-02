@@ -29,7 +29,7 @@ public class Item {
             case "no":
                 return new NoItem();
             default:
-                throw new IllegalArgumentException("This item does not exist");
+               throw new IllegalArgumentException("This item does not exist");
         }
     }
 }

@@ -35,7 +35,7 @@ public class Game {
             mymaze.setRoomEastWall(xCoordinate, yCoordinate, eastWall);
             mymaze.setRoomNorthWall(xCoordinate, yCoordinate, northWall);
             mymaze.setRoomWestWall(xCoordinate, yCoordinate, westWall);
-            mymaze.setObject(xCoordinate, yCoordinate, item);
+            mymaze.setItem(xCoordinate, yCoordinate, item);
             inputLine = reader.readLine();
         }
 

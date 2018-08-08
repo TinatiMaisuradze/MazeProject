@@ -12,36 +12,36 @@ public class Room {
         this.southWall = southWall;
     }
 
-    public Passage getSouthWall() {
-        return southWall;
-    }
-
     public void setEastWall(Passage eastWall) {
         this.eastWall = eastWall;
-    }
-
-    public Passage getEastWall() {
-        return eastWall;
     }
 
     public void setNorthWall(Passage northWall) {
         this.northWall = northWall;
     }
 
-    public Passage getNorthWall() {
-        return northWall;
-    }
-
     public void setWestWall(Passage westWall) {
         this.westWall = westWall;
     }
 
-    public Passage getWestWall() {
-        return westWall;
-    }
-
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Passage getSouthWall() {
+        return southWall;
+    }
+
+    public Passage getEastWall() {
+        return eastWall;
+    }
+
+    public Passage getNorthWall() {
+        return northWall;
+    }
+
+    public Passage getWestWall() {
+        return westWall;
     }
 
     public Item getItem() {

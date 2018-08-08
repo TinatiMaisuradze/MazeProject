@@ -7,8 +7,7 @@ public class Maze {
     private Room[][] room;
     private int length;
     private int height;
-    private int xCoordinate;
-    private int yCoordinate;
+    
     private int stepCounter = 0;
     private Scanner scanner = new Scanner(System.in);
 
@@ -89,7 +88,7 @@ public class Maze {
     public void print(Player player) {
         System.out.println(getStepCounter() + " " + "steps taken");
         System.out.println("Player backpack includes - " + " " + player.getNrOfKeys() + " " + "Keys" + " | " + player.getNrOfHammers()
-                + " " + "Hammers" + " | " + player.getNrOfTrophys() + " " + "Throphys");
+                + " " + "Hammers" + " | " + player.getNrOfTrophys() + " " + "Throphies");
 
 
         for (int yCoordinate = 0; yCoordinate < height; yCoordinate++) {
@@ -108,11 +107,9 @@ public class Maze {
                 } else {
                     System.out.print((room[xCoordinate][yCoordinate].getItem().getVisualisation()));
                 }
-
             }
             System.out.print(room[height - 1][yCoordinate].getWestWall().getHorizontalVisualisation());
             System.out.println();
-
         }
 
         for (int xCoordinate = 0; xCoordinate < length; xCoordinate++) {
@@ -125,12 +122,12 @@ public class Maze {
 
     public void changePassageNorthOf(int x, int y, Passage newPassage) {
         room[x][y].setNorthWall(newPassage);
-        room[x][y-1].setSouthWall(newPassage);
+        room[x][y - 1].setSouthWall(newPassage);
     }
 
     public void changePassageEastOf(int x, int y, Passage newPassage) {
         room[x][y].setEastWall(newPassage);
-        room[x+1][y].setWestWall(newPassage);
+        room[x + 1][y].setWestWall(newPassage);
     }
 
     // change position; for each wall, also same wall of the other room since they are doubled up
@@ -152,8 +149,13 @@ public class Maze {
                     }
                 } else if (room.getNorthWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
-                        player.decNrOfTrhophys();
-                        player.setpY(player.getPY() - 1);
+                        System.out.println("Do you want to use one Trophy to pass through this wall? Please answer yes or no.");
+                        if (scanner.next() == "yes") {
+                            player.decNrOfTrhophys();
+                            player.setpY(player.getPY() - 1);
+                        } else if (scanner.next() == "no") {
+                            System.out.println("Please choose another direction.");
+                        }
                     }
                 } else {
                     player.setpY(player.getPY() - 1);
@@ -162,18 +164,23 @@ public class Maze {
             case "d":
                 if (room.getSouthWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        changePassageNorthOf(player.getPX(), player.getPY()+1, Passage.BROKENWALL);
+                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getSouthWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        changePassageNorthOf(player.getPX(), player.getPY()+1, Passage.OPENDOOR);
+                        changePassageNorthOf(player.getPX(), player.getPY() + 1, Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getSouthWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
-                        player.decNrOfTrhophys();
-                        player.setpY(player.getPY() + 1);
+                        System.out.println("Do you want to use one Trophy to pass through this wall? Please answer yes or no.");
+                        if (scanner.next() == "yes") {
+                            player.decNrOfTrhophys();
+                            player.setpY(player.getPY() - 1);
+                        } else if (scanner.next() == "no") {
+                            System.out.println("Please choose another direction.");
+                        }
                     }
                 } else {
                     player.setpY(player.getPY() + 1);
@@ -182,7 +189,7 @@ public class Maze {
             case "r":
                 if (room.getEastWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                       changePassageEastOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
+                        changePassageEastOf(player.getPX(), player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getEastWall() == Passage.DOOR) {
@@ -192,8 +199,13 @@ public class Maze {
                     }
                 } else if (room.getEastWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
-                        player.decNrOfTrhophys();
-                        player.setPX(player.getPX() + 1);
+                        System.out.println("Do you want to use one Trophy to pass through this wall? Please answer yes or no.");
+                        if (scanner.next() == "yes") {
+                            player.decNrOfTrhophys();
+                            player.setpY(player.getPY() - 1);
+                        } else if (scanner.next() == "no") {
+                            System.out.println("Please choose another direction.");
+                        }
                     }
                 } else {
                     player.setPX(player.getPX() + 1);
@@ -202,18 +214,23 @@ public class Maze {
             case "l":
                 if (room.getWestWall() == Passage.BREAKABLE) {
                     if (player.getNrOfHammers() > 0) {
-                        changePassageEastOf(player.getPX()-1, player.getPY(), Passage.BROKENWALL);
+                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.BROKENWALL);
                         player.decNrOfHammers();
                     }
                 } else if (room.getWestWall() == Passage.DOOR) {
                     if (player.getNrOfKeys() > 0) {
-                        changePassageEastOf(player.getPX()-1, player.getPY(), Passage.OPENDOOR);
+                        changePassageEastOf(player.getPX() - 1, player.getPY(), Passage.OPENDOOR);
                         player.decNrOfKeys();
                     }
                 } else if (room.getWestWall() == Passage.WALL) {
                     if (player.getNrOfTrophys() > 0) {
-                        player.decNrOfTrhophys();
-                        player.setPX(player.getPX() - 1);
+                        System.out.println("Do you want to use one Trophy to pass through this wall? Please answer yes or no.");
+                        if (scanner.next() == "yes") {
+                            player.decNrOfTrhophys();
+                            player.setpY(player.getPY() - 1);
+                        } else if (scanner.next() == "no") {
+                            System.out.println("Please choose another direction.");
+                        }
                     }
                 } else {
                     player.setPX(player.getPX() - 1);
@@ -237,13 +254,10 @@ public class Maze {
             player.incNrOfTrophys();
             room.setItem(new NoItem());
         }
-
     }
 
     public boolean checkForEnd(Player player) {
         Room room = this.room[player.getPX()][player.getPY()];
-        return room.getItem() instanceof  NoItem;
+        return room.getItem() instanceof NoItem;
     }
-
-
 }

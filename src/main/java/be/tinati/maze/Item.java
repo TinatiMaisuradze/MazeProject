@@ -4,10 +4,8 @@ public class Item {
 
     private String Visualisation;
 
-
     public Item(String Visualisation) {
         this.Visualisation = Visualisation;
-
     }
 
     public String getVisualisation() {
@@ -15,7 +13,7 @@ public class Item {
     }
 
     public static Item valueOf(String itemName) {
-        switch (itemName) {
+        switch (itemName.toLowerCase()) {
             case "start":
                 return new Start();
             case "end":
@@ -29,7 +27,7 @@ public class Item {
             case "no":
                 return new NoItem();
             default:
-               throw new IllegalArgumentException("This item does not exist");
+                throw new IllegalArgumentException("The item: " + itemName + " does not exist");
         }
     }
 }

@@ -5,5 +5,4 @@ public class Key extends Item {
         super(" K ");
     }
 
-
 }
